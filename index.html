@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="tile-wrap">
+    <div class="tile">
+        <div class="half top">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="half bottom">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="tile-controll">
+    <div class="controll-buttons">
+        <button type="button" class="btn" data-rotate="left">Rotate Left</button>
+        <button type="button" class="btn reset">Reset</button>
+        <button type="button" class="btn" data-rotate="right">Rotate Right</button>
+    </div>
+    <div class="controll-inputs">
+        <section>
+            <label>Domino Type</label>
+            <input type="search">
+        </section>
+        <section>
+            <label>Domino size</label>
+            <input type="range" name="size" class="player__slider" min="0" max="1" step="0.05" value="1">
+        </section>
+        <section>
+            <label>Domino rotation speed</label>
+            <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1">
+        </section>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

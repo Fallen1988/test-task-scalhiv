@@ -1,0 +1,16 @@
+{
+  "name": "my-project-domino",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "sass , watch"
+  },
+  "author": "Orest Andrusyshyn",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
