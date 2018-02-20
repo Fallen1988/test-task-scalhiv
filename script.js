@@ -5,15 +5,16 @@ function randomNumber() {
 }
 
 function addDotes() {
-    tile.style.transform = `rotate(0deg) scale(0.7)`;
-    speedInput.value = 0.1;
-    tileSize.value = 1;
+    tile.transition = 'none !important';
+    transform.scale = 0.7;
+    transform.rotate = 0;
+    tile.style.transform = `rotate(${transform.rotate}deg) scale(${transform.scale})`;
+    speedInput.value = 0.7;
+    tileSize.value = transform.scale;
     tile.style.transition = speedInput.value + 's';
 
     const topHalf = document.querySelector('.top');
     const bottomHalf = document.querySelector('.bottom');
-
-
     const topValue = randomNumber();
     const bottomValue = randomNumber();
 
@@ -21,40 +22,48 @@ function addDotes() {
     bottomHalf.dataset.dots = String(bottomValue);
 }
 
-
-const reset = document.querySelector('.reset');
-reset.addEventListener('click', addDotes);
-
+let degrees = 0;
 let transform = {
     rotate: 0,
-    scale: 0.7
+    scale: 0.7,
 };
-let degrees = 0;
 function rotateTile() {
-    //deg = ;
     degrees += +this.dataset.rotate;
-
     transform.rotate = degrees;
-    console.log(transform);
     tile.style.transform = `rotate(${transform.rotate}deg) scale(${transform.scale})`;
 }
-
-const tile = document.querySelector('.tile');
-const rotateButtons = document.querySelectorAll('.btn[data-rotate]');
-rotateButtons.forEach(button => button.addEventListener('click', rotateTile));
 
 function changeSpeed(e) {
     tile.style.transition = 1/e.target.value + 's';
 }
-const speedInput = document.querySelector('.rotation-speed');
-
-speedInput.addEventListener('change', changeSpeed);
-//speedInput.addEventListener('mousemove', changeSpeed);
 
 function changeSize(e) {
     transform.scale = e.target.value;
     tile.style.transform = `rotate(${transform.rotate}deg) scale(${transform.scale})`;
 }
+
+let lastHalf = '';
+function changeType(e) {
+    if (!lastHalf) return;
+    lastHalf.dataset.dots = String(this.value);
+    lastHalf = '';
+}
+
+const reset = document.querySelector('.reset');
+const tile = document.querySelector('.tile');
+const rotateButtons = document.querySelectorAll('.btn[data-rotate]');
+const speedInput = document.querySelector('.rotation-speed');
 const tileSize = document.querySelector('.tile-size');
+const halfs = tile.querySelectorAll('.half');
+const tileType = document.querySelector('.tile-type');
+
+reset.addEventListener('click', addDotes);
+rotateButtons.forEach(button => button.addEventListener('click', rotateTile));
+speedInput.addEventListener('change', changeSpeed);
+speedInput.addEventListener('mousemove', changeSpeed);
 tileSize.addEventListener('change', changeSize);
-//tileSize.addEventListener('mousemove', changeSize);
+tileSize.addEventListener('mousemove', changeSize);
+halfs.forEach(half => half.addEventListener('click', function () {
+    lastHalf = this}
+));
+tileType.addEventListener('change', changeType);
