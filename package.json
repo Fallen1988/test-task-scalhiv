@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "sass , watch"
+    "build": "gulp sass",
+    "start": "gulp watch"
   },
   "author": "Orest Andrusyshyn",
   "license": "ISC",
