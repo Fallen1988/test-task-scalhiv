@@ -2,11 +2,20 @@
   box-sizing: border-box;
 }
 
+.tile-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+
 .tile {
   border: 1px solid;
   padding: 10px;
   width: 192px;
   margin: auto;
+  transition: .1s;
+  transform: scale(1) rotate(0deg);
 
   .half {
     width: 170px;

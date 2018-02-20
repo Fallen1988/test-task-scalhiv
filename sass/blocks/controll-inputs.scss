@@ -2,4 +2,18 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+
+  .controll-section {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+    input {
+      width: 1020px;
+      height: 40px
+    }
+  }
 }
+

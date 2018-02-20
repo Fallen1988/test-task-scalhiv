@@ -2,12 +2,15 @@
   min-height: 250px;
   padding: 10px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   margin-right: auto;
   margin-left: auto;
 
   .controll-buttons {
     font-size: 0;
+    margin-bottom: 10px;
 
     .btn {
       box-sizing: border-box;
@@ -24,6 +27,5 @@
       background-color: #e74c3c;
     }
   }
-
 }
 
