@@ -1,69 +1,102 @@
+const state = {};
+
 function randomNumber() {
-    const max = 6;
-    const min = 1;
-    return Math.round(Math.random() * (max - min)) + min;
+  const max = 6;
+  const min = 1;
+  return Math.round(Math.random() * (max - min)) + min;
 }
 
-function addDotes() {
-    tile.transition = 'none !important';
-    transform.scale = 0.7;
-    transform.rotate = 0;
-    tile.style.transform = `rotate(${transform.rotate}deg) scale(${transform.scale})`;
-    speedInput.value = 0.7;
-    tileSize.value = transform.scale;
-    tile.style.transition = speedInput.value + 's';
+function resetState() {
+  state.angle = 0;
+  state.size = 1;
+  state.rotationSpeed = .7;
+  state.dots = {
+    top: randomNumber(),
+    bottom: randomNumber(),
+  };
+  state.selectedFace = null;
 
-    const topHalf = document.querySelector('.top');
-    const bottomHalf = document.querySelector('.bottom');
-    const topValue = randomNumber();
-    const bottomValue = randomNumber();
+  updateDots();
+  updateTransform();
+  updateTransition();
 
-    topHalf.dataset.dots =  String(topValue);
-    bottomHalf.dataset.dots = String(bottomValue);
+  document.querySelector('#size').value = state.size;
+  document.querySelector('#rotationSpeed').value = state.rotationSpeed;
 }
 
-let degrees = 0;
-let transform = {
-    rotate: 0,
-    scale: 0.7,
-};
-function rotateTile() {
-    degrees += +this.dataset.rotate;
-    transform.rotate = degrees;
-    tile.style.transform = `rotate(${transform.rotate}deg) scale(${transform.scale})`;
+function updateDots() {
+  document.querySelector('.top').dataset.dots = String(state.dots.top);
+  document.querySelector('.bottom').dataset.dots = String(state.dots.bottom);
 }
 
-function changeSpeed(e) {
-    tile.style.transition = 1/e.target.value + 's';
+function updateTransform() {
+  document.querySelector('.tile').style.transform = `rotate(${state.angle}deg) scale(${state.size})`;
 }
 
-function changeSize(e) {
-    transform.scale = e.target.value;
-    tile.style.transform = `rotate(${transform.rotate}deg) scale(${transform.scale})`;
+function updateTransition() {
+  document.querySelector('.tile').style.transition= `${state.rotationSpeed}s`;
 }
 
-let lastHalf = '';
-function changeType(e) {
-    if (!lastHalf) return;
-    lastHalf.dataset.dots = String(this.value);
-    lastHalf = '';
+function selectFace(face) {
+  state.selectedFace = face;
+
+  const typeSelect = document.querySelector('#type');
+  typeSelect.value = state.dots[face];
+  typeSelect.disabled = false;
+  removeTypeSelectionHint();
 }
 
-const reset = document.querySelector('.reset');
-const tile = document.querySelector('.tile');
-const rotateButtons = document.querySelectorAll('.btn[data-rotate]');
-const speedInput = document.querySelector('.rotation-speed');
-const tileSize = document.querySelector('.tile-size');
-const halfs = tile.querySelectorAll('.half');
-const tileType = document.querySelector('.tile-type');
+function removeTypeSelectionHint() {
+  const typeSelect = document.querySelector('#type');
+  const hint = typeSelect.querySelector('.hint');
+  if (hint) {
+    typeSelect.removeChild(hint);
+  }
+}
 
-reset.addEventListener('click', addDotes);
-rotateButtons.forEach(button => button.addEventListener('click', rotateTile));
-speedInput.addEventListener('change', changeSpeed);
-speedInput.addEventListener('mousemove', changeSpeed);
-tileSize.addEventListener('change', changeSize);
-tileSize.addEventListener('mousemove', changeSize);
-halfs.forEach(half => half.addEventListener('click', function () {
-    lastHalf = this}
-));
-tileType.addEventListener('change', changeType);
+function setSelectedFaceDots(dots) {
+  state.dots[state.selectedFace] = dots;
+  updateDots();
+}
+
+function rotateLeft() {
+  state.angle -= 90;
+  updateTransform();
+}
+
+function rotateRight() {
+  state.angle += 90;
+  updateTransform();
+}
+
+function setSize(size) {
+  state.size = size;
+  updateTransform();
+}
+
+function setRotationSpeed(speed) {
+  state.rotationSpeed = speed;
+  updateTransition();
+}
+
+function attachEventListeners() {
+  document.querySelector('#reset').addEventListener('click', () => resetState());
+  document.querySelector('#rotateLeft').addEventListener('click', () => rotateLeft());
+  document.querySelector('#rotateRight').addEventListener('click', () => rotateRight());
+
+  document.querySelector('.top').addEventListener('click', () => selectFace('top'));
+  document.querySelector('.bottom').addEventListener('click', () => selectFace('bottom'));
+
+  document.querySelector('#type').addEventListener('change', e => setSelectedFaceDots(e.target.value));
+  document.querySelector('#size').addEventListener('change', e => setSize(e.target.value));
+  document.querySelector('#size').addEventListener('mousemove', e => setSize(e.target.value));
+  document.querySelector('#rotationSpeed').addEventListener('change', e => setRotationSpeed(1 / e.target.value));
+  document.querySelector('#rotationSpeed').addEventListener('mousemove', e => setRotationSpeed(1 / e.target.value));
+}
+
+function start() {
+  resetState();
+  attachEventListeners();
+}
+
+start();
