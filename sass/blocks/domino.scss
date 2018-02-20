@@ -37,53 +37,65 @@
   }
 }
 
-[data-dots="1"] .dot:nth-child(1),
-[data-dots="1"] .dot:nth-child(2),
-[data-dots="1"] .dot:nth-child(3),
-[data-dots="1"] .dot:nth-child(4),
-[data-dots="1"] .dot:nth-child(6),
-[data-dots="1"] .dot:nth-child(7),
-[data-dots="1"] .dot:nth-child(8),
-[data-dots="1"] .dot:nth-child(9) {
-  visibility: hidden;
+[data-dots="1"] {
+  .dot:nth-child(1),
+  .dot:nth-child(2),
+  .dot:nth-child(3),
+  .dot:nth-child(4),
+  .dot:nth-child(6),
+  .dot:nth-child(7),
+  .dot:nth-child(8),
+  .dot:nth-child(9) {
+    visibility: hidden;
+  }
 }
 
-[data-dots="2"] .dot:nth-child(2),
-[data-dots="2"] .dot:nth-child(3),
-[data-dots="2"] .dot:nth-child(4),
-[data-dots="2"] .dot:nth-child(5),
-[data-dots="2"] .dot:nth-child(6),
-[data-dots="2"] .dot:nth-child(7),
-[data-dots="2"] .dot:nth-child(8) {
-  visibility: hidden;
+[data-dots="2"] {
+  .dot:nth-child(2),
+  .dot:nth-child(3),
+  .dot:nth-child(4),
+  .dot:nth-child(5),
+  .dot:nth-child(6),
+  .dot:nth-child(7),
+  .dot:nth-child(8) {
+    visibility: hidden;
+  }
 }
 
-[data-dots="3"] .dot:nth-child(2),
-[data-dots="3"] .dot:nth-child(3),
-[data-dots="3"] .dot:nth-child(4),
-[data-dots="3"] .dot:nth-child(6),
-[data-dots="3"] .dot:nth-child(7),
-[data-dots="3"] .dot:nth-child(8) {
-  visibility: hidden;
+[data-dots="3"] {
+  .dot:nth-child(2),
+  .dot:nth-child(3),
+  .dot:nth-child(4),
+  .dot:nth-child(6),
+  .dot:nth-child(7),
+  .dot:nth-child(8) {
+    visibility: hidden;
+  }
 }
 
-[data-dots="4"] .dot:nth-child(2),
-[data-dots="4"] .dot:nth-child(4),
-[data-dots="4"] .dot:nth-child(5),
-[data-dots="4"] .dot:nth-child(6),
-[data-dots="4"] .dot:nth-child(8) {
-  visibility: hidden;
+[data-dots="4"] {
+  .dot:nth-child(2),
+  .dot:nth-child(4),
+  .dot:nth-child(5),
+  .dot:nth-child(6),
+  .dot:nth-child(8) {
+    visibility: hidden;
+  }
 }
 
-[data-dots="5"] .dot:nth-child(2),
-[data-dots="5"] .dot:nth-child(4),
-[data-dots="5"] .dot:nth-child(6),
-[data-dots="5"] .dot:nth-child(8) {
-  visibility: hidden;
+[data-dots="5"] {
+  .dot:nth-child(2),
+  .dot:nth-child(4),
+  .dot:nth-child(6),
+  .dot:nth-child(8) {
+    visibility: hidden;
+  }
 }
 
-[data-dots="6"] .dot:nth-child(2),
-[data-dots="6"] .dot:nth-child(5),
-[data-dots="6"] .dot:nth-child(8) {
-  visibility: hidden;
+[data-dots="6"] {
+  .dot:nth-child(2),
+  .dot:nth-child(5),
+  .dot:nth-child(8) {
+    visibility: hidden;
+  }
 }
